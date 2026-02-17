@@ -1,0 +1,56 @@
+{% extends 'Base/base.html.twig' %}
+
+{% block content %}
+
+{% include 'Base/navbar2.html.twig' %}
+
+<section class="page-head bg-cover" style="background:#017efa url({{ asset('assets/img/about.jpg') }}) no-repeat;" data-overlay="4">
+	<div class="container">
+		<div class="row">
+			<div class="col-xl-8 col-lg-9 col-md-12">
+				
+				{# <h1 class="text-white mb-4">Who We are<br> & Our Smart Mission</h1> #}
+				<h1 class="text-white mb-4">Top Empolyers</h1>
+				<p class="text-white mb-4">Discover industry-leading employers trusted by professionals worldwide. Connect with companies that value talent, growth, and long-term success..</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Our Team -->
+<section class="bg-light">
+	<div class="container">
+	
+		<div class="row">
+			<div class="col-lg-12 col-md-12">
+				<div class="sec-heading center">
+					<h2>Top Employers</h2>
+					<p>Professional & Dedicated Team</p>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row gx-3 gy-4">
+
+            {# {% include 'Base/Pages/aboutus-team.html.twig' %} #}
+            {% include 'Base/Pages/topemployers.html.twig' %}
+			{# <button type="button" class="btn btn-main fw-medium">View All</button> #}
+			<div class="d-flex justify-content-center">
+	    <a href="{{ path('app_all_employers') }}">
+    		<button type="button" class="btn btn-main fw-medium px-4 py-2">
+        		View All
+    		</button>
+		</a>
+</div>
+
+		</div>
+	
+	</div>
+</section>
+{% include 'Base/Home/home-4/find2.html.twig' %}
+			
+<!-- templates/Base/Home/index/log.html.twig -->
+{% include 'Base/Home/index/log.html.twig' %}
+
+{% include 'Base/footer2.html.twig' %}
+{% endblock %}

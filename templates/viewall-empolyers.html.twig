@@ -1,0 +1,49 @@
+{% extends 'Base/base.html.twig' %}
+
+{% block content %}
+
+{% include 'Base/navbar2.html.twig' %}
+
+<section class="page-head bg-cover" style="background:#017efa url({{ asset('assets/img/about.jpg') }}) no-repeat;" data-overlay="4">
+	<div class="container">
+		<div class="row">
+			<div class="col-xl-8 col-lg-9 col-md-12">
+				
+				{# <h1 class="text-white mb-4">Who We are<br> & Our Smart Mission</h1> #}
+				<h1 class="text-white mb-4">All Empolyers</h1>
+				<p class="text-white mb-4">Explore all employers hiring across multiple industries. Find the right company that matches your skills and career goals.</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Our Team -->
+<section class="bg-light">
+	<div class="container">
+	
+		<div class="row">
+			<div class="col-lg-12 col-md-12">
+				<div class="sec-heading center">
+					<h2>All Employers</h2>
+					<p>Professional & Dedicated Persons</p>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row gx-3 gy-4">
+
+            {% include 'Base/Pages/topemployers.html.twig' %}
+			{# <button type="button" class="btn btn-main fw-medium">View All</button> #}
+
+		</div>
+			{% include 'Base/For-Candidate/Browse-Jobs/grid-style-1/pagination.html.twig' %}
+
+	</div>
+</section>
+{% include 'Base/Home/home-4/find2.html.twig' %}
+			
+<!-- templates/Base/Home/index/log.html.twig -->
+{% include 'Base/Home/index/log.html.twig' %}
+
+{% include 'Base/footer2.html.twig' %}
+{% endblock %}

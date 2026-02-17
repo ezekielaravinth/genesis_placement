@@ -1,0 +1,290 @@
+{% extends 'Base/base.html.twig' %}
+
+{% block content %}
+
+{% include 'Base/navbar2.html.twig' %}
+
+<!-- Page Title Start -->
+<section class="bg-cover bg-second" style="background:url({{ asset('assets/img/bg2.png') }}) no-repeat;">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 col-md-12">
+				<h2 class="ipt-title text-light">The Way to Build Your Dream Career</h2>
+				<span class="text-light opacity-75">
+					Explore opportunities to grow your skills, build meaningful work, and shape your future with us.
+				</span>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Page Title End -->
+
+<!-- Contact Start -->
+<section>
+	<div class="container">
+
+		<div class="row justify-content-center">
+			<div class="col-lg-7 col-md-10 text-center">
+				<div class="sec-heading center">
+					<label class="label text-success bg-light-success">Grow Your Career</label>
+					<h2>Activate Next Now</h2>
+					<p>
+						Looking for a career with Genesis? Please send us a message.
+						We're pretty passionate about what we do, so we'd love to speak with you.
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- Form Row -->
+		<div class="row align-items-center justify-content-center">
+			<div class="col-lg-10 col-md-12">
+
+				<form class="mt-4"
+					  method="post"
+					  action="{{ path('app_careers') }}"
+					  name="myForm"
+					  id="myForm"
+					  enctype="multipart/form-data">
+
+					<input type="hidden" id="csrf_token" value="{{ csrf_token('careers_form') }}">
+
+					<p class="mb-0" id="error-msg"></p>
+					<div id="simple-msg"></div>
+
+					<div class="row">
+
+						<div class="col-lg-6 col-md-6">
+							<div class="form-group">
+								<label>Name</label>
+								<input name="name" id="name" type="text" class="form-control simple" placeholder="E.g. John Doe">
+                                <small class="text-danger" id="name-error"></small>
+							</div>
+						</div>
+
+						<div class="col-lg-6 col-md-6">
+							<div class="form-group">
+								<label>Email</label>
+								<input name="email" id="email" type="email" class="form-control simple" placeholder="E.g. john@example.com">
+                                <small class="text-danger" id="email-error"></small>
+							</div>
+						</div>
+
+						<div class="col-lg-6 col-md-6">
+							<div class="form-group">
+								<label>Phone</label>
+								<input name="number" id="number" type="text" class="form-control simple" placeholder="E.g. 123-456-7890">
+                                <small class="text-danger" id="number-error"></small>
+							</div>
+						</div>
+
+						<div class="col-lg-6 col-md-6">
+							<div class="form-group">
+								<label>Graduation Year</label>
+								<input name="graduationyear" id="graduationyear" type="text" class="form-control simple" placeholder="E.g. 2024">
+                                <small class="text-danger" id="graduationyear-error"></small>
+							</div>
+						</div>
+
+						<!-- File Upload (Bootstrap) -->
+						<div class="col-lg-12 col-md-12">
+							<div class="form-group">
+								<label for="resume">Upload Resume</label>
+								<input
+									class="form-control"
+									type="file"
+									id="resume"
+									name="resume"
+									accept=".pdf,.doc,.docx"
+								>
+								<small id="file-name" class="text-muted d-block mt-1"></small>
+                                <small class="text-danger" id="resume-error"></small>
+							</div>
+						</div>
+
+						<!-- Submit Button -->
+						<div class="col-lg-12 col-md-12 text-center">
+							<div class="form-group">
+								<button type="submit" id="submit" name="send" class="btn btn-main px-5">
+									Submit Request
+								</button>
+							</div>
+						</div>
+
+					</div>
+				</form>
+			</div>
+		</div>
+		<!-- /Form Row -->
+
+		<!-- Careers Info Row -->
+		{# <div class="row align-items-center justify-content-center">
+			<div class="col-lg-10 col-md-12">
+				<div class="ctr-jobstock-box">
+					{% for item in careers %}
+						<div class="ctr-jobstock-signl">
+							<div class="ctr-jobstock-signl-ico">
+								<i class="{{ item.icon }}"></i>
+							</div>
+							<div class="ctr-jobstock-signl-caption">
+								<h5>{{ item.name }}</h5>
+								<p>{{ item.title }}</p>
+								<p>{{ item.mail }}</p>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div> #}
+		<!-- /Careers Info Row -->
+
+	</div>
+</section>
+<!-- Contact End -->
+
+{% include 'Base/Home/home-4/find2.html.twig' %}
+{% include 'Base/Home/index/log.html.twig' %}
+{% include 'Base/footer2.html.twig' %}
+
+<!-- File Upload JS -->
+
+<script>
+  const form = document.getElementById('myForm');
+
+  const nameField = document.getElementById('name');
+  const emailField = document.getElementById('email');
+  const phoneField = document.getElementById('number');
+  const yearField = document.getElementById('graduationyear');
+  const resumeField = document.getElementById('resume');
+  const fileNameEl = document.getElementById('file-name');
+
+  const maxFileSize = 5 * 1024 * 1024;
+
+  // Regex
+  const gmailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+  const phoneRegex = /^[0-9]{10}$/;
+  const yearRegex = /^[0-9]{4}$/;
+
+  // Helpers
+  function showError(id, msg) {
+    document.getElementById(id).textContent = msg;
+  }
+
+  function clearError(id) {
+    document.getElementById(id).textContent = '';
+  }
+
+  /* =========================
+     INPUT RESTRICTIONS
+  ==========================*/
+
+  // Name: letters & spaces only
+  nameField.addEventListener('input', function () {
+    this.value = this.value.replace(/[^a-zA-Z\s]/g, '');
+  });
+
+  // Phone: numbers only, max 10
+  phoneField.addEventListener('input', function () {
+    this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);
+  });
+
+  // Graduation Year: numbers only, max 4
+  yearField.addEventListener('input', function () {
+    this.value = this.value.replace(/[^0-9]/g, '').slice(0, 4);
+  });
+
+  /* =========================
+     BLUR VALIDATION
+  ==========================*/
+
+  nameField.addEventListener('blur', () => {
+    nameField.value.trim() === ''
+      ? showError('name-error', 'Name is required')
+      : clearError('name-error');
+  });
+
+  emailField.addEventListener('blur', () => {
+    if (emailField.value.trim() === '') {
+      showError('email-error', 'Email is required');
+    } else if (!gmailRegex.test(emailField.value)) {
+      showError('email-error', 'Valid Gmail is required');
+    } else {
+      clearError('email-error');
+    }
+  });
+
+  phoneField.addEventListener('blur', () => {
+    !phoneRegex.test(phoneField.value)
+      ? showError('number-error', 'Phone number must be exactly 10 digits')
+      : clearError('number-error');
+  });
+
+  yearField.addEventListener('blur', () => {
+    !yearRegex.test(yearField.value)
+      ? showError('graduationyear-error', 'Enter a valid graduation year')
+      : clearError('graduationyear-error');
+  });
+
+  /* =========================
+     FILE VALIDATION
+  ==========================*/
+
+  resumeField.addEventListener('change', function () {
+    const file = this.files[0];
+
+    if (!file) {
+      showError('resume-error', 'Resume is required');
+      fileNameEl.textContent = '';
+      return;
+    }
+
+    if (file.size > maxFileSize) {
+      showError('resume-error', 'File size must be less than 5 MB');
+      this.value = '';
+      fileNameEl.textContent = '';
+      return;
+    }
+
+    clearError('resume-error');
+    fileNameEl.textContent = 'Selected file: ' + file.name;
+  });
+
+  /* =========================
+     FORM SUBMIT VALIDATION
+  ==========================*/
+
+  form.addEventListener('submit', function (e) {
+    let valid = true;
+
+    if (nameField.value.trim() === '') {
+      showError('name-error', 'Name is required');
+      valid = false;
+    }
+
+    if (!gmailRegex.test(emailField.value)) {
+      showError('email-error', 'Valid Gmail is required');
+      valid = false;
+    }
+
+    if (!phoneRegex.test(phoneField.value)) {
+      showError('number-error', 'Enter a phone number');
+      valid = false;
+    }
+
+    if (!yearRegex.test(yearField.value)) {
+      showError('graduationyear-error', 'Enter a graduation year');
+      valid = false;
+    }
+
+    if (!resumeField.files.length) {
+      showError('resume-error', 'Resume is required');
+      valid = false;
+    }
+
+    if (!valid) {
+      e.preventDefault();
+    }
+  });
+</script>
+
+{% endblock %}
