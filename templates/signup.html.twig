@@ -1,0 +1,196 @@
+{% extends 'Base/base.html.twig' %}
+
+{% block content %}
+
+{% include 'Base/navbar2.html.twig' %}
+			
+<!-- Login Form Start -->
+<section class="gray-simple ">
+	<div class="container">
+		<!-- row Start -->
+		<div class="row justify-content-center">
+			
+			<!-- Single blog Grid -->
+			<div class="col-xl-7 col-lg-8 col-md-12">
+				<div class="card rounded-4">
+					<div class="card-body p-4">
+					{{ form_start(form, { attr: { class: 'p-md-4' } }) }}
+
+<!-- Header -->
+<div class="form-heads d-block mb-4">
+    <div class="head-caps">
+        <h4>Create your JobStock profile</h4>
+        <p>Search & apply to jobs from India's No.1 Job Site</p>
+    </div>
+</div>
+
+<div class="form-float d-flex flex-column gap-4">
+
+    <!-- Full Name -->
+    <div class="form-group mb-0">
+        <label class="fw-medium fs-6 text-dark">Full Name</label>
+        {{ form_widget(form.fullName, {
+            attr: {
+                class: 'form-control',
+                placeholder: 'What is your name?'
+            }
+        }) }}
+    </div>
+
+    <!-- Email -->
+    <div class="form-group mb-0">
+        <label class="fw-medium fs-6 text-dark">
+            Email ID<i class="text-danger">*</i>
+        </label>
+        {{ form_widget(form.email, {
+            attr: {
+                class: 'form-control',
+                placeholder: 'Tell us your Email ID'
+            }
+        }) }}
+        <span class="text-sm text-muted">
+            We'll send relevant jobs and updates to this email
+        </span>
+    </div>
+
+    <!-- Password -->
+    <div class="form-group mb-0">
+        <label class="fw-medium fs-6 text-dark">
+            Password<i class="text-danger">*</i>
+        </label>
+        {{ form_widget(form.password, {
+            attr: {
+                class: 'form-control',
+                placeholder: '(Minimum 8 characters)'
+            }
+        }) }}
+        <span class="text-sm text-muted">
+            This helps your account stay protected
+        </span>
+    </div>
+
+    <!-- Mobile -->
+    <div class="form-group mb-0">
+        <label class="fw-medium fs-6 text-dark">
+            Mobile number<i class="text-danger">*</i>
+        </label>
+        {{ form_widget(form.mobile, {
+            attr: {
+                class: 'form-control',
+                placeholder: 'Enter your mobile number'
+            }
+        }) }}
+        <span class="text-sm text-muted">
+            This helps your account stay protected
+        </span>
+    </div>
+
+    <!-- Work Status -->
+    <div class="form-group mb-0">
+        <label class="fw-medium fs-6 text-dark">
+            Work status<i class="text-danger">*</i>
+        </label>
+
+        <div class="row g-4">
+
+            <!-- Job Seeker -->
+            <div class="col-sm-6">
+                <div class="sing-btn-groups">
+                    {{ form_widget(form.workStatus[0], { attr: { class: 'btn-check' } }) }}
+                    <label class="btn btn-outline-gray w-100 h-auto p-3"
+                           for="{{ form.workStatus[0].vars.id }}">
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="icons">
+                                <!-- keep your SVG/icon here -->
+                            </div>
+                            <div class="text-start">
+                                <h6 class="mb-1">I'm looking job</h6>
+                                <p class="mb-0 text-sm text-muted">
+                                    Looking great opportunity for my career
+                                </p>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Recruiter -->
+            <div class="col-sm-6">
+                <div class="sing-btn-groups">
+                    {{ form_widget(form.workStatus[1], { attr: { class: 'btn-check' } }) }}
+                    <label class="btn btn-outline-gray w-100 h-auto p-3"
+                           for="{{ form.workStatus[1].vars.id }}">
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="icons">
+                                <!-- keep your SVG/icon here -->
+                            </div>
+                            <div class="text-start">
+                                <h6 class="mb-1">I'm hiring</h6>
+                                <p class="mb-0 text-sm text-muted">
+                                    Looking great opportunity for my career
+                                </p>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Promotions -->
+    <div class="form-group mb-0">
+        <div class="form-check">
+            {{ form_widget(form.promotions, { attr: { class: 'form-check-input' } }) }}
+            <label class="form-check-label" for="{{ form.promotions.vars.id }}">
+                Send me important updates & promotions via SMS & email
+            </label>
+        </div>
+    </div>
+
+    <!-- Terms -->
+    <p class="confirmTex mb-0">
+        By clicking Register, you agree to the
+        <a href="#" class="text-main">Terms and Conditions</a> &
+        <a href="#" class="text-main">Privacy Policy</a>
+        of Jobstock.com
+    </p>
+
+    <!-- Submit -->
+    <button type="submit" class="btn btn-main full-width mt-2">
+        Register now
+    </button>
+
+</div>
+
+{{ form_end(form) }}
+
+						{# <div class="devider position-relative d-block">
+							<hr class="mb-5 mt-4">
+							<div class="position-absolute top-50 start-50 translate-middle"><span class="square--30 circle bg-white text-muted">OR</span></div>
+						</div> #}
+						
+						{# <div class="social-signup d-flex flex-column gap-3 mb-4">
+							<a href="#" class="btn btn-gray rounded-pill w-100"><img src="{{ asset('assets/img/facebook.png') }}" class="img-fluid me-2" width="20" alt="Facebook Signup">Signup with Facebook</a>
+							<a href="#" class="btn btn-gray rounded-pill w-100"><img src="{{ asset('assets/img/google.png') }}" class="img-fluid me-2" width="20" alt="Google Signup">Signup with Google</a>
+						</div> #}
+						
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		<!-- /row -->					
+	</div>	
+</section>
+<!-- Login Form End -->
+			
+<!-- templates/Base/Home/home-4/find2.html.twig -->
+{% include 'Base/Home/home-4/find2.html.twig' %}
+		
+<!-- templates/Base/Home/index/log.html.twig -->
+{% include 'Base/Home/index/log.html.twig' %}
+
+{% include 'Base/footer2.html.twig' %}
+
+{% endblock %}

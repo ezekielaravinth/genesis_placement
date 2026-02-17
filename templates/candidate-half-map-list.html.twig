@@ -1,0 +1,63 @@
+{% extends 'Base/base.html.twig' %}
+
+{% block content %}
+
+{% include 'Base/navbar6.html.twig' %}
+
+<!-- Hero Banner Start -->
+<div class="map-banner-wrap half-map">
+	
+	<div class="map-left-box">
+		<div class="map-home flt-wrap">
+			<div class="home-map-container fw-map">
+				<div id="map-main"></div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="map-content-wrap">
+		<div class="map-content-bxo">
+		
+			<div class="row">
+				<div class="col-xl-12 col-lg-12 col-md-12">
+
+					<!-- templates/Base/For-Candidate/Browse-Map-Jobs/half-map/search2.html.twig -->
+           			{% include 'Base/For-Candidate/Browse-Map-Jobs/half-map/search2.html.twig' %}
+
+					<!-- templates/Base/For-Candidate/Browse-Map-Jobs/half-map/results2.html.twig -->
+           			{% include 'Base/For-Candidate/Browse-Map-Jobs/half-map/results2.html.twig' %}
+					
+				</div>
+				
+			</div>
+			
+		</div>
+		
+		<!--- All List -->
+		<div class="map-content-list">
+			<!-- Start All List -->
+			<div class="row justify-content-start gx-3 gy-4">
+		
+				<!-- templates/Base/For-Candidate/Browse-Candidate/candidate-list-1/candidate5.html.twig -->
+           		{% include 'Base/For-Candidate/Browse-Candidate/candidate-list-1/candidate5.html.twig' %}
+				
+			</div>
+			<!-- End All Job List -->
+			
+			<!-- templates/Base/For-Candidate/Browse-Jobs/grid-style-1/pagination.html.twig -->
+           	{% include 'Base/For-Candidate/Browse-Jobs/grid-style-1/pagination.html.twig' %}
+				
+		</div>
+	</div>
+	
+</div>
+<div class="clearfix"></div>
+<!-- Hero Banner End -->
+
+<!-- templates/Base/Home/index/log.html.twig -->
+{% include 'Base/Home/index/log.html.twig' %}
+			
+<!-- templates/Base/Home/home-3/filter.html.twig -->
+{% include 'Base/Home/home-3/filter.html.twig' %}
+
+{% endblock %}
